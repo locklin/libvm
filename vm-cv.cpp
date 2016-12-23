@@ -1,6 +1,8 @@
 #include "vm.h"
 #include <iostream>
 #include <fstream>
+#include <cstring>
+#include <chrono>
 #include <iomanip>
 
 void ExitWithHelp();
@@ -53,11 +55,14 @@ int main(int argc, char *argv[]) {
   brier = new double[prob->num_ex];
   logloss = new double[prob->num_ex];
 
-  std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+  //  std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+
+  auto start_time = std::chrono::high_resolution_clock::now();
 
   CrossValidation(prob, &param, predict_labels, lower_bounds, upper_bounds, brier, logloss);
 
-  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+  //  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+  auto end_time = std::chrono::high_resolution_clock::now();
 
   for (int i = 0; i < prob->num_ex; ++i) {
     avg_lower_bound += lower_bounds[i];

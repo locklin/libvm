@@ -1,5 +1,6 @@
+## for C++14,-std=c++1y
 CXX ?= g++
-CFLAGS = -Wall -Wconversion -O3 -fPIC
+CFLAGS = -std=c++11 -Wall -Wconversion -O3 -fPIC
 SHVER = 2
 OS = $(shell uname)
 
@@ -13,6 +14,10 @@ vm-online: vm-online.cpp utilities.o kernel.o knn.o svm.o mcsvm.o vm.o
 
 vm-cv: vm-cv.cpp utilities.o kernel.o knn.o svm.o mcsvm.o vm.o
 	$(CXX) $(CFLAGS) vm-cv.cpp utilities.o kernel.o knn.o svm.o mcsvm.o vm.o -o vm-cv -lm
+
+vm-so:  utilities.o kernel.o knn.o svm.o mcsvm.o vm.o 
+	$(CXX) -shared -Wl,-soname,libvm.so -o libvm.so \
+	utilities.o kernel.o knn.o svm.o mcsvm.o vm.o -lm
 
 utilities.o: utilities.cpp utilities.h
 	$(CXX) $(CFLAGS) -c utilities.cpp
@@ -33,4 +38,4 @@ vm.o: vm.cpp vm.h
 	$(CXX) $(CFLAGS) -c vm.cpp
 
 clean:
-	rm -f utilities.o kernel.o knn.o svm.o mcsvm.o vm.o vm-offline vm-online vm-cv
+	rm -f utilities.o kernel.o knn.o svm.o mcsvm.o vm.o vm-offline vm-online vm-cv libvm.so

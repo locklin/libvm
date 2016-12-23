@@ -3,6 +3,8 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
+#include <cstring>
+#include <chrono>
 
 void ExitWithHelp();
 void ParseCommandLine(int argc, char *argv[], char *train_file_name, char *test_file_name, char *output_file_name, char *model_file_name);
@@ -51,7 +53,9 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+  //  std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+
+  auto start_time = std::chrono::high_resolution_clock::now();
 
   if (param.load_model == 1) {
     model = LoadModel(model_file_name);
@@ -113,7 +117,9 @@ int main(int argc, char *argv[]) {
   avg_brier /= test->num_ex;
   avg_logloss /= test->num_ex;
 
-  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+  //  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+
+  auto end_time = std::chrono::high_resolution_clock::now();
 
   std::cout << "Accuracy: " << 100.0*num_correct/test->num_ex << '%'
             << " (" << num_correct << '/' << test->num_ex << ") "

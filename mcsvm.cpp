@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iomanip>
 #include <cfloat>
+#include <cstring>
 #include <cstdarg>
 #include <random>
 

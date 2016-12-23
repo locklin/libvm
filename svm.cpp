@@ -2,10 +2,12 @@
 #include <cmath>
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include <iomanip>
 #include <string>
 #include <vector>
 #include <exception>
+#include <limits.h> // for INT_MAX
 
 typedef signed char schar;
 

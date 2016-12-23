@@ -2,7 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <cstring>
 #include <random>
+#include <algorithm>
 
 double CalcCombinedDecisionValues(const double *decision_values, int num_classes, int label) {
   if (num_classes == 2) {

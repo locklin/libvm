@@ -1,6 +1,8 @@
 #include "vm.h"
 #include <iostream>
 #include <fstream>
+#include <chrono>
+#include <cstring>
 #include <iomanip>
 
 void ExitWithHelp();
@@ -55,11 +57,15 @@ int main(int argc, char *argv[]) {
   logloss = new double[prob->num_ex];
   indices = new int[prob->num_ex];
 
-  std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+  //std::chrono::time_point<std::chrono::steady_clock> start_time = std::chrono::high_resolution_clock::now();
+
+  auto start_time = std::chrono::high_resolution_clock::now();
 
   OnlinePredict(prob, &param, predict_labels, indices, lower_bounds, upper_bounds, brier, logloss);
 
-  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+  //  std::chrono::time_point<std::chrono::steady_clock> end_time = std::chrono::high_resolution_clock::now();
+
+  auto end_time = std::chrono::high_resolution_clock::now();
 
   output_file << prob->y[indices[0]] << '\n';
 
