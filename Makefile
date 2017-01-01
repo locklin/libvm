@@ -1,6 +1,6 @@
 ## for C++14,-std=c++1y
 CXX ?= g++
-CFLAGS = -std=c++11 -Wall -Wconversion -O3 -fPIC
+CFLAGS = -std=c++11 -Wall -Wconversion -O3 -fPIC -fopenmp
 SHVER = 2
 OS = $(shell uname)
 

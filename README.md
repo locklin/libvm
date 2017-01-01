@@ -1,6 +1,10 @@
+
 # LibVM -- A Library for Venn Machine
 
 LibVM is a simple, easy-to-use, and efficient software for Venn Machine on classification, which gives label prediction together with it's probabilistic estimations. This library solves Venn prediction in both online and offline mode with _k_-nearest neighbors or support vector machines as the underlying algorithms. This document explains the use of LibVM.
+
+put parallel stuff in it, so 
+export OMP_NUM_THREADS=8
 
 ## Table of Contents
 

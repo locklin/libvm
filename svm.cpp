@@ -859,6 +859,7 @@ class SVC_Q : public Kernel {
     Qfloat *data;
     int start = cache_->get_data(i, &data, len);
     if (start < len) {
+#pragma omp parallel
       for (int j = start; j < len; ++j)
         data[j] = static_cast<Qfloat>(y_[i]*y_[j]*(this->*kernel_function)(i, j));
     }
@@ -1335,6 +1336,7 @@ double PredictSVMValues(const SVMModel *model, const Node *x, double *decision_v
   int best_idx = 0;
 
   double *kvalue = new double[total_sv];
+#pragma omp parallel
   for (int i = 0; i < total_sv; ++i) {
     kvalue[i] = Kernel::KernelFunction(x, model->svs[i], model->param.kernel_param);
   }
